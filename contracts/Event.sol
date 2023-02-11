@@ -16,7 +16,7 @@ import "./interfaces/ICircuitValidator.sol";
 import "./verifiers/ZKPVerifier.sol";
 // import "./EventFabric.sol";
 
-// import "./EventFabric.sol";
+// Contract address: 0xF756B97D670f08E794685f6B825e7E46a5791523
 
 contract Event is ERC721, ZKPVerifier{
 
@@ -119,9 +119,8 @@ contract Event is ERC721, ZKPVerifier{
     function _beforeTokenTransfer(
         address, /* from */
         address to,
-        uint256, /* token */
-        uint256
-    ) internal view override{
+        uint256 /* token */
+    ) internal view override {
         require(
             proofs[to][TRANSFER_REQUEST_ID] == true,
             "only identities who provided proof are allowed to receive tokens"

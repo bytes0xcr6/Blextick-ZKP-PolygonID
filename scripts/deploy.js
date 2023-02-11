@@ -6,7 +6,7 @@ async function main() {
   const maxSupply = "1000";
   const maxTicketUser = "2";
   const baseURI = "http://";
-  const organizer = "0x";
+  const organizer = "0x4B229Ed260cc6AA763c17C412162d46f2b4caF52";
   const Event = await ethers.getContractFactory("Event");
   const event = await Event.deploy(
     verifierName,
@@ -20,7 +20,7 @@ async function main() {
   );
 
   await event.deployed();
-  console.log(event, " tx hash:", event.address);
+  console.log(" tx hash:", event.address);
 }
 main()
   .then(() => process.exit(0))
