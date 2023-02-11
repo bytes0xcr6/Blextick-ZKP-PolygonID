@@ -116,13 +116,15 @@ contract Event is ERC721URIStorage, ZKPVerifier{
     function _beforeTokenTransfer(
         address, /* from */
         address to,
-        uint256,
-        uint256 /* amount */
-    ) internal view override {
+        uint256 /* token */
+    ) internal view override{
         require(
             proofs[to][TRANSFER_REQUEST_ID] == true,
             "only identities who provided proof are allowed to receive tokens"
         );
+
+        require(amountTickets[to] < maxTicketsUser, "Can't receive more");
+
     }
 
     /** 
