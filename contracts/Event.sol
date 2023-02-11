@@ -10,13 +10,15 @@ pragma solidity 0.8.18;
     - ADJUST TRANSFER FUNCTIONS TO ONLY ALLOW maxTicketsUser PER USER.
     - MAKE THE CONTRACT MORE EFFICIENT (MODIFY REQUIRES WITH CUSTOM ERRORS)
 **/
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./lib/GenesisUtils.sol";
 import "./interfaces/ICircuitValidator.sol";
 import "./verifiers/ZKPVerifier.sol";
 // import "./EventFabric.sol";
 
-contract Event is ERC721URIStorage, ZKPVerifier{
+// import "./EventFabric.sol";
+
+contract Event is ERC721, ZKPVerifier{
 
     address private eventFabric;
     string private baseURI; // Example: https://cristianricharte6.github.io/metadata/
@@ -27,6 +29,7 @@ contract Event is ERC721URIStorage, ZKPVerifier{
     uint256 public maxTicketsUser; // Maximum number of tickets per user
     bool internal locked; // Reentracy guard
     bool public mintingStatus; // True = Paused | False = Unpaused
+    // ZKP
     uint64 public constant TRANSFER_REQUEST_ID = 1;
 
     // ZKP
@@ -116,7 +119,8 @@ contract Event is ERC721URIStorage, ZKPVerifier{
     function _beforeTokenTransfer(
         address, /* from */
         address to,
-        uint256 /* token */
+        uint256, /* token */
+        uint256
     ) internal view override{
         require(
             proofs[to][TRANSFER_REQUEST_ID] == true,
@@ -176,8 +180,8 @@ contract Event is ERC721URIStorage, ZKPVerifier{
      * @dev Getter for a concatenated string of base URI + Token URI + file extension.
      * @param _tokenId: NFT Id.
      */
-    function tokenURI(uint256 _tokenId) public view override(ERC721URIStorage) returns (string memory) {
-        return string(abi.encodePacked(ERC721URIStorage.tokenURI(_tokenId),".json"));
+    function tokenURI(uint256 _tokenId) public view override(ERC721) returns (string memory) {
+        return string(abi.encodePacked(ERC721.tokenURI(_tokenId),".json"));
     }
 
     /**
