@@ -1,15 +1,26 @@
 async function main() {
-  const verifierContract = "ERC20Verifier";
-  const verifierName = "ERC20zkAirdrop";
-  const verifierSymbol = "zkERC20";
-  const ERC20Verifier = await ethers.getContractFactory(verifierContract);
-  const erc20Verifier = await ERC20Verifier.deploy(
+  const verifierName = "zkEventTickets";
+  const verifierSymbol = "zkTickets";
+  const date = "1000000000000000";
+  const price = "15";
+  const maxSupply = "1000";
+  const maxTicketUser = "2";
+  const baseURI = "http://";
+  const organizer = "0x";
+  const Event = await ethers.getContractFactory("Event");
+  const event = await Event.deploy(
     verifierName,
-    verifierSymbol
+    verifierSymbol,
+    date,
+    price,
+    maxSupply,
+    maxTicketUser,
+    baseURI,
+    organizer
   );
 
-  await erc20Verifier.deployed();
-  console.log(verifierName, " tx hash:", erc20Verifier.address);
+  await event.deployed();
+  console.log(event, " tx hash:", event.address);
 }
 main()
   .then(() => process.exit(0))
