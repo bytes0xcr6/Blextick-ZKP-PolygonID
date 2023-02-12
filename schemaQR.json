@@ -2,12 +2,12 @@
 // https://codesandbox.io/s/frontend-claim-an-erc20-zk-airdrop-on-polygon-mumbai-forked-tvk27u?file=/index.js
 
 {
-  "id": "c811849d-6bfb-4d85-936e-3d9759c7f105",
+  "id": "263dfd13-a676-4fba-9085-83bebc5c8c2c", // Modified Schema ID
   "typ": "application/iden3comm-plain-json",
   "type": "https://iden3-communication.io/proofs/1.0/contract-invoke-request",
   "body": {
     "transaction_data": {
-      "contract_address": "0x5d8b7E9BB5eFA238559a1Fb773C2Ad24C63D5eFd",
+      "contract_address": "0x5d8b7E9BB5eFA238559a1Fb773C2Ad24C63D5eFd", // Modified
       "method_id": "b68967e2",
       "chain_id": 80001,
       "network": "polygon-mumbai"
@@ -22,12 +22,12 @@
             "allowed_issuers": ["*"],
             "req": {
               "KYC": {
-                "$equal": true
+                "$eq": "yes" // 1 = true (Modified)
               }
             },
             "schema": {
-              "url": "e4f29b7418d3e75943f52087950145a7",
-              "type": "KYC"
+              "url": "https://s3.eu-west-1.amazonaws.com/polygonid-schemas/c9572265-0a57-4cc4-8191-d2ca439585fa.json-ld", // Modified
+              "type": "KYC" // Modified
             }
           }
         }

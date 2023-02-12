@@ -2,7 +2,7 @@ async function main() {
   const circuitId = "credentialAtomicQuerySig";
   const validatorAddress = "0xb1e86C4c687B85520eF4fd2a0d14e81970a15aFB";
   // (Modified)
-  const schemaHash = "e4f29b7418d3e75943f52087950145a7"; // extracted from PID Platform
+  const schemaHash = "e8fc16c48a291b1bfa4386e71deb5f73"; // extracted from PID Platform
 
   const schemaEnd = fromLittleEndian(hexToBytes(schemaHash));
 
@@ -10,17 +10,20 @@ async function main() {
     schema: ethers.BigNumber.from(schemaEnd),
     slotIndex: 2,
     operator: 2,
-    value: [20020101, ...new Array(63).fill(0).map((i) => 0)],
+    // 1 = true
+    value: [1, ...new Array(63).fill(0).map((i) => 0)], //Modified to "true"
     circuitId,
   };
 
   // add the address of the contract just deployed (Modified)
   EventAddress = "0x5d8b7E9BB5eFA238559a1Fb773C2Ad24C63D5eFd";
 
+  // Contract modified
   let eventVerifier = await hre.ethers.getContractAt("Event", EventAddress);
+  const requestId = await eventVerifier.TRANSFER_REQUEST_ID();
 
   try {
-    await eventVerifier.setZKPRequest(1, validatorAddress, query);
+    await eventVerifier.setZKPRequest(requestId, validatorAddress, query);
     console.log("Request set");
   } catch (e) {
     console.log("error: ", e);
