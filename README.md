@@ -4,7 +4,7 @@
 
 - **Team:** Ethereum Ninjas 🥷
 - Smart Contract (Polygon Mumbai): 0xecf178144ccec09417412d66e2ecc8a2841ee228
-
+- BlexTick OpenSea (Mumbai): https://testnets.opensea.io/es/collection/blextick 
 - Polygon ID Workshop: https://www.youtube.com/watch?v=PNIOt-ii2Xk&list=PLar2Ti_Qchk6aRRWs0gc4yc10yV6b8em4&index=7
 - Docs Polygon ID: https://0xpolygonid.github.io/tutorials/verifier/on-chain-verification/overview/
 
