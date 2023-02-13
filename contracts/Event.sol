@@ -39,7 +39,7 @@ contract Event is ERC721, ZKPVerifier{
     // User address => total amount of tickets
     mapping (address => uint256) public amountTickets;
     // After validating Schema the wallet can buy
-    mapping(address => bool) private kycPassed;
+    mapping(address => bool) public kycPassed;
 
     event NFTMinted(address indexed minter, uint256 nftId, uint256 mintingTime);
     event FundsWithdrawn(address indexed caller, address indexed to, uint256 amount, uint256 updateTime);
