@@ -7,7 +7,7 @@
   "type": "https://iden3-communication.io/proofs/1.0/contract-invoke-request",
   "body": {
     "transaction_data": {
-      "contract_address": "0x1756c00Bb0CF7d310113c989C7aC05C885756Ac9", // Modified
+      "contract_address": "0x3797d01e950182d3fA5D03a0985466758B9548c5", // Modified
       "method_id": "b68967e2",
       "chain_id": 80001,
       "network": "polygon-mumbai"

@@ -136,7 +136,7 @@ contract Event is ERC721, ZKPVerifier{
         address, /* from */
         address to,
         uint256 batchSize/* token */
-    ) internal view  {
+    ) internal view override {
         require(
             proofs[to][TRANSFER_REQUEST_ID] == true,
             "only identities who provided proof are allowed to receive tokens"
