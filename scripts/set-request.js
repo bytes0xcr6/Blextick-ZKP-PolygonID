@@ -1,22 +1,20 @@
 async function main() {
   const circuitId = "credentialAtomicQuerySig";
   const validatorAddress = "0xb1e86C4c687B85520eF4fd2a0d14e81970a15aFB";
-  // (Modified)
-  const schemaHash = "e8fc16c48a291b1bfa4386e71deb5f73"; // extracted from PID Platform
+  const schemaHash = "14dd52cc817dd2c568dd31ce2d1bafca"; // extracted from PID Platform
 
   const schemaEnd = fromLittleEndian(hexToBytes(schemaHash));
 
   const query = {
     schema: ethers.BigNumber.from(schemaEnd),
     slotIndex: 2,
-    operator: 2,
-    // 1 = true
-    value: [1, ...new Array(63).fill(0).map((i) => 0)], //Modified to "true"
+    operator: 1, // Modified to 1
+    value: [1, ...new Array(63).fill(0).map((i) => 0)], //Modified to "true" /1=true
     circuitId,
   };
 
   // add the address of the contract just deployed (Modified)
-  EventAddress = "0x5d8b7E9BB5eFA238559a1Fb773C2Ad24C63D5eFd";
+  const EventAddress = "0x1756c00Bb0CF7d310113c989C7aC05C885756Ac9";
 
   // Contract modified
   let eventVerifier = await hre.ethers.getContractAt("Event", EventAddress);

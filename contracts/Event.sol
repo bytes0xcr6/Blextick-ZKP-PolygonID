@@ -79,7 +79,7 @@ contract Event is ERC721, ZKPVerifier{
         require(!mintingStatus, "Minting is paused");
         require(nFTsMinted+1 <= maxSupply, "Sold out");
         require(amountTickets[msg.sender] < maxTicketsUser, "Can't buy more");
-        require(msg.value == price, "Pay ticket price");
+        // require(msg.value == price, "Pay ticket price");
         address addr = GenesisUtils.int256ToAddress(
             inputs[validator.getChallengeInputIndex()]
         );
@@ -103,6 +103,9 @@ contract Event is ERC721, ZKPVerifier{
         uint256 id = inputs[validator.getChallengeInputIndex()];
         // execute the airdrop
         if (idToAddress[id] == address(0)) {
+            // Pay ticket fee
+            bool sent = payable (address(this)).send(price);
+            require(sent, "Failed to send Ether");
             // Increase tickets minted by address
             amountTickets[msg.sender]++;
             // Mint ticket

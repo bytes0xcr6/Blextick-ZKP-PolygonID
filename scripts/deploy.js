@@ -2,7 +2,7 @@ async function main() {
   const verifierName = "zkEventTickets";
   const verifierSymbol = "zkTickets";
   const date = "1000000000000000";
-  const price = "15";
+  const price = "1";
   const maxSupply = "1000";
   const maxTicketUser = "2";
   const baseURI = "http://";
