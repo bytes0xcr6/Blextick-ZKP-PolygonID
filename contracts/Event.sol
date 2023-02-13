@@ -74,6 +74,7 @@ contract Event is ERC721, ZKPVerifier{
     // Pay tickets
     function buyTicket(uint256 _amount) external payable {
         require(!mintingStatus, "Minting is paused");
+        require(kycPassed[msg.sender], "Verify your KYC");
         require(nFTsMinted + _amount <= maxSupply, "Sold out");
         require(amountTickets[msg.sender] + _amount < maxTicketsUser, "Can't buy more");
         uint256 totalPrice = price * _amount;
@@ -125,6 +126,8 @@ contract Event is ERC721, ZKPVerifier{
         if (idToAddress[id] == address(0)) {
             addressToId[_msgSender()] = id;
             idToAddress[id] = _msgSender();
+            //Allow the user to mint & buy tickets.
+            kycPassed[msg.sender] = true;
         }
     }
 
