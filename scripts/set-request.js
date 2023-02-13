@@ -14,7 +14,7 @@ async function main() {
   };
 
   // add the address of the contract just deployed (Modified)
-  const EventAddress = "0x3797d01e950182d3fA5D03a0985466758B9548c5";
+  const EventAddress = "0xd467b7797059e968cB837a46F98F869687152BbC";
 
   // Contract modified
   let eventVerifier = await hre.ethers.getContractAt("Event", EventAddress);

@@ -27,7 +27,6 @@ contract Event is ERC721, ZKPVerifier{
     uint256 public maxSupply;
     uint256 public nFTsMinted; // First NFT minted will be 0.
     uint256 public maxTicketsUser; // Maximum number of tickets per user
-    bool internal locked; // Reentracy guard
     bool public mintingStatus; // True = Paused | False = Unpaused
     // ZKP
     uint64 public constant TRANSFER_REQUEST_ID = 1;
@@ -47,13 +46,6 @@ contract Event is ERC721, ZKPVerifier{
     event PausedContract(bool contractStatus, uint256 updateTime);
     event UnpauseContract(bool contractStatus, uint256 updateTime);
     event BaseURIUpdated(string newBaseURI, uint256 updateTime);
-
-    modifier reentrancyGuard {
-        require(locked == true);
-        locked = true;
-        _;
-        locked = false;
-    }
 
     // /** 
     //  * @param name_: NFT Collection Name. (Plantiverse)
@@ -151,7 +143,7 @@ contract Event is ERC721, ZKPVerifier{
      * @param to: Address to send the value from the Smart contract.
      * @param amount: Total amount to transfer.
      */
-    function withdraw(address payable to, uint256 amount) external payable onlyOwner reentrancyGuard returns(bool) {
+    function withdraw(address payable to, uint256 amount) external payable onlyOwner returns(bool) {
         require(to != address(0), "Not a valid address");
         (to).transfer(amount);
         emit FundsWithdrawn(msg.sender, to, amount, block.timestamp);
