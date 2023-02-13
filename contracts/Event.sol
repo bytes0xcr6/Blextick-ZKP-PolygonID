@@ -38,6 +38,8 @@ contract Event is ERC721, ZKPVerifier{
 
     // User address => total amount of tickets
     mapping (address => uint256) public amountTickets;
+    // After validating Schema the wallet can buy
+    mapping(address => bool) private kycPassed;
 
     event NFTMinted(address indexed minter, uint256 nftId, uint256 mintingTime);
     event FundsWithdrawn(address indexed caller, address indexed to, uint256 amount, uint256 updateTime);
@@ -66,8 +68,30 @@ contract Event is ERC721, ZKPVerifier{
         baseURI = baseURI_;
         transferOwnership(_organizer);
         eventFabric = msg.sender;
+    }    
+
+
+    // Pay tickets
+    function buyTicket(uint256 _amount) external payable {
+        require(!mintingStatus, "Minting is paused");
+        require(nFTsMinted + _amount <= maxSupply, "Sold out");
+        require(amountTickets[msg.sender] + _amount < maxTicketsUser, "Can't buy more");
+        uint256 totalPrice = price * _amount;
+        require(msg.value == totalPrice, "Pay ticket price");
+        // Pay ticket fee
+        (bool sent,) = payable(address(this)).call{value: msg.value}("");
+        require(sent, "Failed to send Ether");
+
+        // Mint ticket
+        for(uint256 i; i < _amount;){
+            _mint(_msgSender(), nFTsMinted);
+            emit NFTMinted(msg.sender, nFTsMinted, block.timestamp);
+            // Increment total tickets minted
+            amountTickets[msg.sender]++;
+            ++nFTsMinted;
+            ++i;
+        }
     }
-    
 
     //ZKP -> Verifies requirements and submits proof
     function _beforeProofSubmit(
@@ -76,10 +100,6 @@ contract Event is ERC721, ZKPVerifier{
         ICircuitValidator validator
     ) internal view override {
         // check that challenge input of the proof is equal to the msg.sender 
-        require(!mintingStatus, "Minting is paused");
-        require(nFTsMinted+1 <= maxSupply, "Sold out");
-        require(amountTickets[msg.sender] < maxTicketsUser, "Can't buy more");
-        // require(msg.value == price, "Pay ticket price");
         address addr = GenesisUtils.int256ToAddress(
             inputs[validator.getChallengeInputIndex()]
         );
@@ -103,16 +123,6 @@ contract Event is ERC721, ZKPVerifier{
         uint256 id = inputs[validator.getChallengeInputIndex()];
         // execute the airdrop
         if (idToAddress[id] == address(0)) {
-            // Pay ticket fee
-            bool sent = payable (address(this)).send(price);
-            require(sent, "Failed to send Ether");
-            // Increase tickets minted by address
-            amountTickets[msg.sender]++;
-            // Mint ticket
-            _mint(_msgSender(), nFTsMinted);
-            emit NFTMinted(msg.sender, nFTsMinted, block.timestamp);
-            // Increment total tickets minted
-            ++nFTsMinted;
             addressToId[_msgSender()] = id;
             idToAddress[id] = _msgSender();
         }
@@ -122,14 +132,14 @@ contract Event is ERC721, ZKPVerifier{
     function _beforeTokenTransfer(
         address, /* from */
         address to,
-        uint256 /* token */
-    ) internal view override {
+        uint256 batchSize/* token */
+    ) internal view  {
         require(
             proofs[to][TRANSFER_REQUEST_ID] == true,
             "only identities who provided proof are allowed to receive tokens"
         );
 
-        require(amountTickets[to] < maxTicketsUser, "Can't receive more");
+        require(amountTickets[to] + batchSize <= maxTicketsUser, "Can't receive more");
 
     }
 
