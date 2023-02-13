@@ -3,6 +3,8 @@ async function main() {
   let eventVerifier = await hre.ethers.getContractAt("Event", EventAddress);
 
   await eventVerifier.buyTicket(1, { value: 1 });
+
+  console.log("1 NFT minted");
 }
 
 main()
