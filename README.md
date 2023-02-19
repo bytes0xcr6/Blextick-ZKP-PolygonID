@@ -1,6 +1,14 @@
 # Blextick ZKP - Polygon ID
 
-♾️ This is our repo for the <a href="https://devfolio.co/projects/blextickpass-id-c610">ETHFORALL Hackathon project</a> ♾️
+♾️ This is our repo for the <a href="https://devfolio.co/projects/blextickpass-id-c610"> Devfolio ETHFORALL Hackathon project</a> using Polygon ID ♾️
+
+Our proposed system of "1 user = 1 wallet" (BlextickPass) offers a multitude of benefits to prevent common issues associated with event ticketing(Every user that wants to use our platform should have a BlextickPass).
+- Whale accumulation.
+- Lack of regulation.
+- Market Manipulation.
+- BlextickPlus.
+
+<a href="https://devfolio.co/projects/blextickpass-id-c610">Read more...</a>
 
 ### **Team:** Ethereum Ninjas 🥷
 -------------------------
