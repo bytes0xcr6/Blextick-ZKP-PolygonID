@@ -37,6 +37,8 @@ The protocol uses [Hardhat](https://hardhat.org/) as a development environment a
 
 - <a href="https://github.com/CristianRicharte6/Blextick-ZKP-PolygonID/blob/master/contracts/EventFabric.sol">Events Fabric contract.</a> (Passing requirements from the organizer to create the Event contract)
 - <a href="https://github.com/CristianRicharte6/Blextick-ZKP-PolygonID/blob/master/contracts/Event.sol">Event contract.</a> (NFT tickets to sell to verified users)
+<img width="887" alt="transactions ZKP" src="https://user-images.githubusercontent.com/102038261/219947099-787c36ca-c2cc-46fa-8198-e2327f37554d.png">
+
 
 ## Workflow Organizer (Events creator) 🏟
 <img src="https://raw.githubusercontent.com/strujilloz/DevFolio-ETH-For-All/main/client/src/Components/images/Blextick%20Organizer.png" width="500" height="500">
