@@ -38,7 +38,6 @@ The protocol uses [Hardhat](https://hardhat.org/) as a development environment a
 5. The Organizer verifies that the User owns the NFT/Ticket at the Event gate.
 
 ## Workflow User 🙋‍♂
-<img src="https://raw.githubusercontent.com/strujilloz/DevFolio-ETH-For-All/main/client/src/Components/images/Diagram.png" width="500" height="500">
 1. Request Schema OrganizationPass provided by a Official institution.
 <img width="480" alt="e" src="https://user-images.githubusercontent.com/102038261/218482231-f1b56ba9-ecd8-46e2-b3fd-465099ffe33c.png">
 
@@ -60,3 +59,10 @@ The protocol uses [Hardhat](https://hardhat.org/) as a development environment a
 2. Open the app and set a pin for security
 
 3. Follow the [Issue a Polygon ID claim](https://polygontechnology.notion.site/Issue-yourself-a-KYC-Age-Credential-claim-a06a6fe048c34115a3d22d7d1ea315ea) doc to issue yourself a KYC Age Credential attesting your date of birth.
+
+## How are we using PolygonID to improve the ecosystem?
+1. We are using Polygon ID as a login credentials/authentication for the users when they want to interact in our platform
+2. With BlextickPlus we are creating a transparent on chain data system where users can share their data(in this case, preferences) without showing their identity, with the incentive of getting rewards, this is an unmanipulable system as users cannot create different wallets and get the BlextickPass/Plus to win prizes or pump up the numbers/statistics.
+
+## Diagram Issuer-Holder-Verifier PolygonID
+<img src="https://raw.githubusercontent.com/strujilloz/DevFolio-ETH-For-All/main/client/src/Components/images/Diagram.png" width="500" height="500">
