@@ -2,6 +2,8 @@
 
 ♾️ This is our repo for the <a href="https://devfolio.co/projects/blextickpass-id-c610"> Devfolio ETHFORALL Hackathon project</a> using Polygon ID ♾️
 
+"Making ticketing as fair as possible" BlextickPass for user authentication, and BlextickPlus for data sharing without revealing identity, creating a transparent & unmanipulable system.
+
 Our proposed system of "1 user = 1 wallet" (BlextickPass) offers a multitude of benefits to prevent common issues associated with event ticketing(Every user that wants to use our platform should have a BlextickPass).
 - Whale accumulation.
 - Lack of regulation.
