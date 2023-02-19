@@ -1,6 +1,6 @@
 # Blextick ZKP - Polygon ID
 
-♾️ This is our repo for the ETHFORALL Hackathon project ♾️
+♾️ This is our repo for the <a href="https://devfolio.co/projects/blextickpass-id-c610">ETHFORALL Hackathon project</a> ♾️
 
 - **Team:** Ethereum Ninjas 🥷
 - Smart Contract (Polygon Mumbai): 0xecf178144ccec09417412d66e2ecc8a2841ee228
