@@ -47,11 +47,6 @@ contract Event is ERC721, ZKPVerifier{
     event UnpauseContract(bool contractStatus, uint256 updateTime);
     event BaseURIUpdated(string newBaseURI, uint256 updateTime);
 
-    // /** 
-    //  * @param name_: NFT Collection Name. (Plantiverse)
-    //  * @param symbol_: NFT Collection Symbol. (PLANT)
-    //  * @param baseURI_: Base URI where the NFTs Metadata is Stored.
-    //  */
     constructor(string memory _name, string memory _symbol, uint256 _date, uint256 _price, uint256 _maxSupply, uint256 _maxTicketsUser, string memory baseURI_, address _organizer) ERC721(_name, _symbol){
         date = _date;
         price = _price;
